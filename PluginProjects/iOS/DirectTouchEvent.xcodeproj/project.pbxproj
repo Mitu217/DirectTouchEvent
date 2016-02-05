@@ -1,0 +1,275 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BB4026A01C3E49FD00478B93 /* DirectTouchManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB40269F1C3E49FD00478B93 /* DirectTouchManager.cpp */; };
+		BB4026AC1C40941500478B93 /* DirectTouchEventView.mm in Sources */ = {isa = PBXBuildFile; fileRef = BB4026AB1C40941500478B93 /* DirectTouchEventView.mm */; };
+		BB4026B11C409BF100478B93 /* NativeBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = BB4026B01C409BF100478B93 /* NativeBridge.mm */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BB4026911C3E49B100478B93 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		BB4026931C3E49B100478B93 /* libDirectTouchEvent.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDirectTouchEvent.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB40269F1C3E49FD00478B93 /* DirectTouchManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DirectTouchManager.cpp; sourceTree = "<group>"; };
+		BB4026A91C408D1400478B93 /* DirectTouchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectTouchManager.h; sourceTree = "<group>"; };
+		BB4026AA1C4093F300478B93 /* DirectTouchEventView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectTouchEventView.h; sourceTree = "<group>"; };
+		BB4026AB1C40941500478B93 /* DirectTouchEventView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DirectTouchEventView.mm; sourceTree = "<group>"; };
+		BB4026B01C409BF100478B93 /* NativeBridge.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NativeBridge.mm; sourceTree = "<group>"; };
+		BB4026B31C409D2200478B93 /* NativeBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeBridge.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BB4026901C3E49B100478B93 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BB40268A1C3E49B100478B93 = {
+			isa = PBXGroup;
+			children = (
+				BB4026951C3E49B100478B93 /* DirectTouchEvent */,
+				BB4026941C3E49B100478B93 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BB4026941C3E49B100478B93 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BB4026931C3E49B100478B93 /* libDirectTouchEvent.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BB4026951C3E49B100478B93 /* DirectTouchEvent */ = {
+			isa = PBXGroup;
+			children = (
+				BB4026A91C408D1400478B93 /* DirectTouchManager.h */,
+				BB40269F1C3E49FD00478B93 /* DirectTouchManager.cpp */,
+				BB4026AA1C4093F300478B93 /* DirectTouchEventView.h */,
+				BB4026AB1C40941500478B93 /* DirectTouchEventView.mm */,
+				BB4026B31C409D2200478B93 /* NativeBridge.h */,
+				BB4026B01C409BF100478B93 /* NativeBridge.mm */,
+			);
+			path = DirectTouchEvent;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BB4026921C3E49B100478B93 /* DirectTouchEvent */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB40269C1C3E49B100478B93 /* Build configuration list for PBXNativeTarget "DirectTouchEvent" */;
+			buildPhases = (
+				BB40268F1C3E49B100478B93 /* Sources */,
+				BB4026901C3E49B100478B93 /* Frameworks */,
+				BB4026911C3E49B100478B93 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DirectTouchEvent;
+			productName = DirectTouchEvent;
+			productReference = BB4026931C3E49B100478B93 /* libDirectTouchEvent.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BB40268B1C3E49B100478B93 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = Mitu217;
+				TargetAttributes = {
+					BB4026921C3E49B100478B93 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = BB40268E1C3E49B100478B93 /* Build configuration list for PBXProject "DirectTouchEvent" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BB40268A1C3E49B100478B93;
+			productRefGroup = BB4026941C3E49B100478B93 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BB4026921C3E49B100478B93 /* DirectTouchEvent */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BB40268F1C3E49B100478B93 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB4026B11C409BF100478B93 /* NativeBridge.mm in Sources */,
+				BB4026AC1C40941500478B93 /* DirectTouchEventView.mm in Sources */,
+				BB4026A01C3E49FD00478B93 /* DirectTouchManager.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		BB40269A1C3E49B100478B93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = ../../Assets/DirectTouchEvent/Plugins/iOS;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+				VALID_ARCHS = "arm64 armv7 armv7s";
+			};
+			name = Debug;
+		};
+		BB40269B1C3E49B100478B93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = ../../Assets/DirectTouchEvent/Plugins/iOS;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s";
+			};
+			name = Release;
+		};
+		BB40269D1C3E49B100478B93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		BB40269E1C3E49B100478B93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BB40268E1C3E49B100478B93 /* Build configuration list for PBXProject "DirectTouchEvent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB40269A1C3E49B100478B93 /* Debug */,
+				BB40269B1C3E49B100478B93 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB40269C1C3E49B100478B93 /* Build configuration list for PBXNativeTarget "DirectTouchEvent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB40269D1C3E49B100478B93 /* Debug */,
+				BB40269E1C3E49B100478B93 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BB40268B1C3E49B100478B93 /* Project object */;
+}
