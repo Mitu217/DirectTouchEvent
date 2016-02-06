@@ -1,48 +1,50 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using InputSupport;
+using MobileNativeTouch;
 
-public class DirectTouch {
-	private static DirectTouchEvent touchEvent;
-	public static DirectTouchEvent TouchEvent {
-		get {
-			if (touchEvent == null) {
-				touchEvent = (DirectTouchEvent)GameObject.FindObjectOfType (typeof(DirectTouchEvent));
-				if (touchEvent == null) {
-					touchEvent = new GameObject("DirectTouchEventSystem").AddComponent<DirectTouchEvent>();
-					Initialization ();
-				}
+public class MobileTouch : InputPluginBase<IMobileTouchEventHandler, MobileTouchEventHandlerManager, TouchInfo, MobileTouchInfoManager> {
+	private GameObject _gameObject;
+
+	void Awake()
+	{
+		_gameObject = gameObject;
+	}
+
+	void Start ()
+	{
+		if (_gameObject.GetComponent<DefaultTouchEvent> () == null) {
+			#if UNITY_ANDROID
+			_gameObject.AddComponent<AndroidTouchEvent> ().MobileTouchInfoManager = infoManager;
+			#else
+			_gameObject.AddComponent<DefaultTouchEvent> ().MobileTouchInfoManager = infoManager;
+			#endif
+		} else {
+			int count;
+			#if UNITY_ANDROID
+			count = _gameObject.GetComponents<AndroidTouchEvent> ().Length;
+			foreach (var androidTouchEvent in _gameObject.GetComponents<AndroidTouchEvent> ()) {
+				if (count == 1) { break; }
+				Destroy (androidTouchEvent);
 			}
-			return touchEvent;
+			#else
+			count = _gameObject.GetComponents<DefaultTouchEvent> ().Length;
+			foreach (var defaultTouchEvent in _gameObject.GetComponents<DefaultTouchEvent> ()) {
+				if (count == 1) { break; }
+				Destroy (defaultTouchEvent);
+			}
+			#endif
 		}
 	}
-		
-	/**************************
-	 * Initialize Methods
-	 **************************/
-	private static void Initialization() {
-		EnableDefaultPlugin ();
-	}
 
-	/**************************
-	 * DirectTouch Methods
-	 **************************/
-	// Get Current Touch Info
-	public static DirectTouchInfo[] touches { 
+	public static TouchInfo[] touches { 
 		get { 
-			return TouchEvent.currentTouchInfo.ToArray();
+			return infoManager.CurrentInfo.ToArray ();
 		}
 	}
 
-	// Registter or Unregister Eventhander
-	public static bool RegisterEventHandler (IDirectTouchEventHandler handler) 
-	{ 
-		return (TouchEvent == null) ? false : TouchEvent.AddEventHandler (handler); 
-	}
-	public static bool UnregisterEventHandler (IDirectTouchEventHandler handler) 
-	{ 
-		return (TouchEvent == null) ? false : TouchEvent.RemoveEventHandler (handler); 
-	}
-
+		
+	/*
 	// Enable or Disable UnityDefaultTouchEvent
 	public static void EnableUnityDefaultTouch() 
 	{ 
@@ -50,12 +52,14 @@ public class DirectTouch {
 			DirectTouchNativeBridge.EnableDefaultTouch (); 
 		}
 	}
+
 	public static void DisableUnityDefaultTouch() 
 	{ 
 		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer) {
 			DirectTouchNativeBridge.DisableDefaultTouch (); 
 		}
 	}
+
 
 	// Enable or Disable NativePlugin
 	public static void EnableNativePlugin()
@@ -65,6 +69,7 @@ public class DirectTouch {
 			DisableDefaultPlugin ();
 		}	
 	}
+
 	public static void DisableNativePlugin()
 	{
 		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer) {
@@ -73,11 +78,12 @@ public class DirectTouch {
 
 		EnableDefaultPlugin ();
 	}
-
+	*/
 
 	/**************************
 	 * Inner Methods
 	 **************************/
+	/*
 	private static void EnableDefaultPlugin()
 	{
 		if (touchEvent != null && touchEvent.GetComponent<DefaultTouchEvent> () == null) {
@@ -92,4 +98,5 @@ public class DirectTouch {
 			GameObject.Destroy (touchEvent.GetComponent<DefaultTouchEvent> ());
 		}
 	}
+	*/
 }

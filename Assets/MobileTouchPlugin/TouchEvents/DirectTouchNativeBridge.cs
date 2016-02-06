@@ -4,6 +4,7 @@ using System.Collections;
 using System.Runtime.InteropServices;
 
 public class DirectTouchNativeBridge {
+	/*
 	private delegate void TouchEventCallback(IntPtr ptrTouchInfo, int nVal);
 
 	#if UNITY_IPHONE
@@ -53,4 +54,5 @@ public class DirectTouchNativeBridge {
 	static void Callback(IntPtr ptrTouchInfo, int nVal) { DirectTouch.TouchEvent.NativeCallback (ptrTouchInfo, nVal); }
 
 	public static bool Initialization() { return (InitializationManager () == 0) ? (RegisterTouchEventCallback (Callback) == 0) : false; }
+	*/
 }

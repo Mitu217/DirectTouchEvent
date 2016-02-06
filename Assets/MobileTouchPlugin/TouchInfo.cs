@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class DirectTouchInfo {
-	public DirectTouchInfo(int id, Vector3 scrPos, float timestamp, float radius, float pressure) {
+public class TouchInfo 
+{
+	public TouchInfo(int id, Vector3 scrPos, float timestamp, float radius, float pressure) {
 		this.touchId = id;
 		this.currentScreenPosition = scrPos;
 		this.deltaDistance = Vector3.zero;
@@ -12,14 +12,14 @@ public class DirectTouchInfo {
 		this.pressure = pressure;
 	}
 
-	public DirectTouchInfo(DirectTouchEvent.TouchInfo touchInfo) {
-		this.touchId = touchInfo.touchID;
-		this.currentScreenPosition = new Vector3 (touchInfo.posX, Screen.height - touchInfo.posY, 0f);
+	public TouchInfo(MobileNativeTouch.Touch touch) {
+		this.touchId = touch.touchID;
+		this.currentScreenPosition = new Vector3 (touch.posX, Screen.height - touch.posY, 0f);
 		this.deltaDistance = Vector3.zero;
-		this.eventTime = (float)touchInfo.timestamp;
+		this.eventTime = (float)touch.timestamp;
 		this.deltaTime = 0.0f;
-		this.radius = touchInfo.radius;
-		this.pressure = touchInfo.pressure;
+		this.radius = touch.radius;
+		this.pressure = touch.pressure;
 	}
 
 	public int touchId{ get; set; }
