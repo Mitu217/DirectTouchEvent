@@ -4,12 +4,13 @@ using System.Collections.Generic;
 
 namespace MobileNativeTouch
 {
-	public class DefaultTouchEvent : BaseTouchEvent {
-		private bool running;
+	public class DefaultTouchEvent : MonoBehaviour {
+		private MobileTouchInfoManager infoManager;
 		private List<TouchInfo> touches;
 
 		void Awake()
 		{ 
+			infoManager = MobileTouch.GetInfoManager;
 			touches = new List<TouchInfo> ();
 		}
 
@@ -20,39 +21,44 @@ namespace MobileNativeTouch
 
 		void Update()
 		{
-			for(var i=MobileTouchInfoManager.CurrentInfo.Count-1; i>=0; i--) {
-				if (MobileTouchInfoManager.CurrentInfo[i].phase == TouchPhase.Ended) {
-					MobileTouchInfoManager.Remove (MobileTouchInfoManager.CurrentInfo[i]);
+			for(var i=infoManager.CurrentInfo.Count-1; i>=0; i--) {
+				if (infoManager.CurrentInfo[i].phase == TouchPhase.Ended) {
+					infoManager.RemoveAt (i);
 				}
 			}
 
-			#if UNITY_IOS && UNITY_ANDROID
-			InputForTouch (ref touches);
-			#elif UNITY_EDITOR
-			InputForTouch (ref touches);
-			InputForMouse (ref touches);
-			#else
-			InputForMouse (ref touches);
-			#endif
+			if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer) { 
+				InputForTouch (ref touches);
+			} else if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.OSXEditor){
+				InputForTouch (ref touches);
+				InputForMouse (ref touches);
+			} else {
+				InputForMouse (ref touches);
+			}
 
 			if (touches.Count > 0) {
+				if (touches.Count < infoManager.InfoCount) {
+					infoManager.Clear ();
+					return;
+				}
+
 				foreach (var touch in touches) {
 					switch (touch.phase) {
 					case TouchPhase.Began:
-						MobileTouchInfoManager.Add (touch);
+						infoManager.Add (touch);
 						break;
 					case TouchPhase.Moved:
-						MobileTouchInfoManager.Update (touch);
+						infoManager.Update (touch);
 						break;
 					case TouchPhase.Ended:
-						MobileTouchInfoManager.Update (touch);
+						infoManager.Update (touch);
 						break;
 					case TouchPhase.Canceled:
 						touch.phase = TouchPhase.Ended;
-						MobileTouchInfoManager.Update (touch);
+						infoManager.Update (touch);
 						break;
 					case TouchPhase.Stationary:
-						MobileTouchInfoManager.Update (touch);
+						infoManager.Update (touch);
 						break;
 					}
 				}
@@ -62,7 +68,7 @@ namespace MobileNativeTouch
 
 		void OnDestroy() 
 		{
-			MobileTouchInfoManager.Clear ();
+			infoManager.Clear ();
 		}
 
 

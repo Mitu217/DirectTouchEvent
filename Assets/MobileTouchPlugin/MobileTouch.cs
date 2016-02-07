@@ -4,37 +4,17 @@ using InputSupport;
 using MobileNativeTouch;
 
 public class MobileTouch : InputPluginBase<IMobileTouchEventHandler, MobileTouchEventHandlerManager, TouchInfo, MobileTouchInfoManager> {
-	private GameObject _gameObject;
+	private static GameObject _gameObject;
 
 	void Awake()
 	{
 		_gameObject = gameObject;
+		DontDestroyOnLoad (_gameObject);
 	}
 
 	void Start ()
 	{
-		if (_gameObject.GetComponent<DefaultTouchEvent> () == null) {
-			#if UNITY_ANDROID
-			_gameObject.AddComponent<AndroidTouchEvent> ().MobileTouchInfoManager = infoManager;
-			#else
-			_gameObject.AddComponent<DefaultTouchEvent> ().MobileTouchInfoManager = infoManager;
-			#endif
-		} else {
-			int count;
-			#if UNITY_ANDROID
-			count = _gameObject.GetComponents<AndroidTouchEvent> ().Length;
-			foreach (var androidTouchEvent in _gameObject.GetComponents<AndroidTouchEvent> ()) {
-				if (count == 1) { break; }
-				Destroy (androidTouchEvent);
-			}
-			#else
-			count = _gameObject.GetComponents<DefaultTouchEvent> ().Length;
-			foreach (var defaultTouchEvent in _gameObject.GetComponents<DefaultTouchEvent> ()) {
-				if (count == 1) { break; }
-				Destroy (defaultTouchEvent);
-			}
-			#endif
-		}
+		EnableDefaultTouch ();
 	}
 
 	public static TouchInfo[] touches { 
@@ -43,60 +23,68 @@ public class MobileTouch : InputPluginBase<IMobileTouchEventHandler, MobileTouch
 		}
 	}
 
-		
-	/*
-	// Enable or Disable UnityDefaultTouchEvent
+	public static void EnableDefaultTouch()
+	{
+		foreach (var nativeTouchEvent in _gameObject.GetComponents<MobileNativeTouchEvent> ()) {
+			Destroy (nativeTouchEvent);
+		}
+
+		if (_gameObject.GetComponent<DefaultTouchEvent> () == null) {
+			_gameObject.AddComponent<DefaultTouchEvent> ();
+		} else {
+			int count = _gameObject.GetComponents<DefaultTouchEvent> ().Length;
+			foreach (var defaultTouchEvent in _gameObject.GetComponents<DefaultTouchEvent> ()) {
+				if (count == 1) { 
+					break; 
+				} else {
+					count--;
+				}
+				Destroy (defaultTouchEvent);
+			}
+		}
+	}
+
+	public static void EnableMobileNativeTouch()
+	{
+		if (Application.platform != RuntimePlatform.Android && Application.platform != RuntimePlatform.IPhonePlayer) {
+			Debug.LogWarning ("current platform isn't Mobile.");
+			return;
+		}
+			
+		foreach (var defaultTouchEvent in _gameObject.GetComponents<DefaultTouchEvent> ()) {
+			Destroy (defaultTouchEvent);
+		}
+
+		if (_gameObject.GetComponent<MobileNativeTouchEvent> () == null) {
+			_gameObject.AddComponent<MobileNativeTouchEvent> ();
+		} else {
+			int count = _gameObject.GetComponents<MobileNativeTouchEvent> ().Length;
+			foreach (var nativeTouchEvent in _gameObject.GetComponents<MobileNativeTouchEvent> ()) {
+				if (count == 1) { 
+					break; 
+				} else {
+					count--;
+				}
+				Destroy (nativeTouchEvent);
+			}
+		}
+	}
+
 	public static void EnableUnityDefaultTouch() 
 	{ 
 		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer) {
-			DirectTouchNativeBridge.EnableDefaultTouch (); 
+			if (_gameObject.GetComponent<MobileNativeTouchEvent> () != null) {
+				_gameObject.GetComponent<MobileNativeTouchEvent> ().EnableDefaultTouchEvent ();
+			}
 		}
 	}
 
 	public static void DisableUnityDefaultTouch() 
 	{ 
 		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer) {
-			DirectTouchNativeBridge.DisableDefaultTouch (); 
+			if (_gameObject.GetComponent<MobileNativeTouchEvent> () != null) {
+				_gameObject.GetComponent<MobileNativeTouchEvent> ().DisableDefaultTouchEvent ();
+			}
 		}
 	}
-
-
-	// Enable or Disable NativePlugin
-	public static void EnableNativePlugin()
-	{
-		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer) {
-			DirectTouchNativeBridge.EnableNativePlugin ();
-			DisableDefaultPlugin ();
-		}	
-	}
-
-	public static void DisableNativePlugin()
-	{
-		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer) {
-			DirectTouchNativeBridge.DisableNativePlugin ();
-		}
-
-		EnableDefaultPlugin ();
-	}
-	*/
-
-	/**************************
-	 * Inner Methods
-	 **************************/
-	/*
-	private static void EnableDefaultPlugin()
-	{
-		if (touchEvent != null && touchEvent.GetComponent<DefaultTouchEvent> () == null) {
-			touchEvent.gameObject.AddComponent<DefaultTouchEvent> ().Initialization (touchEvent);
-		}
-	}
-
-	private static void DisableDefaultPlugin()
-	{
-		if (touchEvent != null && touchEvent.GetComponent<DefaultTouchEvent> () != null) {
-			touchEvent.GetComponent<DefaultTouchEvent> ().Finalization ();
-			GameObject.Destroy (touchEvent.GetComponent<DefaultTouchEvent> ());
-		}
-	}
-	*/
 }

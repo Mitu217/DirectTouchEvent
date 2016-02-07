@@ -6,35 +6,37 @@ public class Tes : MonoBehaviour, IMobileTouchEventHandler {
 	// Use this for initialization
 	void Start () {
 		MobileTouch.RegisterEventHandler (this);
+		MobileTouch.EnableMobileNativeTouch ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		//Debug.Log (MobileTouch.touches.Length);
+		//Debug.Log (Input.touches.Length);
 	}
 
 	#region IMobileTouchEventHandler implementation
 
 	public bool OnTouchEventBegan (TouchInfo[] touchInfo)
 	{
-		foreach (var info in touchInfo) {
-			Debug.Log ("Began: " + info.currentScreenPosition + ", " + info.touchId);
+		foreach (var touch in touchInfo) {
+			Debug.Log ("Began");
 		}
-
 		return false;
 	}
 
 	public bool OnTouchEventEnded (TouchInfo[] touchInfo)
 	{
-		foreach (var info in touchInfo) {
-			Debug.Log ("Ended: " + info.currentScreenPosition + ", " + info.touchId);
+		foreach (var touch in touchInfo) {
+			Debug.Log ("Ended");
 		}
-
 		return false;
 	}
 
 	public bool OnTouchEventMoved (TouchInfo[] touchInfo)
 	{
+		foreach (var touch in touchInfo) {
+			//Debug.Log (touch.radius);
+		}
 		return false;
 	}
 

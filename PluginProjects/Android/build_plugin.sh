@@ -11,12 +11,12 @@ echo "Signature dump of DirectTouch..."
 javap -s net.reinford.DirectTouch
 
 echo "Creating DirectTouch.jar..."
-jar cvfM ../../Assets/DirectTouchEvent/Plugins/Android/DirectTouch.jar net
+jar cvfM ../../Assets/MobileTouchPlugin/Plugins/Android/DirectTouch.jar net
 
 echo ""
 echo "Compiling NativeBridge.cpp..."
 ~/Library/Android/ndk-r10e/ndk-build NDK_PROJECT_PATH=. NDK_APPLICATION_MK=Application.mk $*
-mv libs/armeabi/libDirectTouchEvent.so ../../Assets/DirectTouchEvent/Plugins/Android/
+mv libs/armeabi/libDirectTouchEvent.so ../../Assets/MobileTouchPlugin/Plugins/Android/
 
 echo ""
 echo "Cleaning up / removing build folders..."

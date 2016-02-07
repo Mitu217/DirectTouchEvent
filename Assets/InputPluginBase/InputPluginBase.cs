@@ -2,13 +2,18 @@
 using System.Collections;
 using InputSupport;
 
-public abstract class InputPluginBase<IEventHandler, EventHandlerManager, TouchInfo, InfoManager> : MonoBehaviour
+public abstract class InputPluginBase<IEventHandler, EventHandlerManager, InfoClass, InfoManager> : MonoBehaviour
 	where IEventHandler : IInputEventHandler
-	where EventHandlerManager : InputEventHandlerManager<IEventHandler, TouchInfo>, new() 
-	where InfoManager : InputInfoManager<TouchInfo>, new() 
+	where EventHandlerManager : InputEventHandlerManager<IEventHandler, InfoClass>, new() 
+	where InfoManager : InputInfoManager<InfoClass>, new() 
 {
 	private static EventHandlerManager eventHandlerManager;
 	protected static InfoManager infoManager;
+	public static InfoManager GetInfoManager {
+		get {
+			return infoManager;
+		}
+	}
 
 	public InputPluginBase()
 	{

@@ -41,30 +41,27 @@ public class DirectTouch
   }
   
   public void Initialization() { 
+    EnableTouchView();
+  }
+
+  public void EnableTouchView() {
     mActivity.runOnUiThread(new Runnable() {
       @Override
       public void run() {
         if (mActivity.findViewById(TAG_NUMBER) == null) {
-          FrameLayout frameLayout = new FrameLayout(mActivity); 
-
           View view = new View(mActivity);
           view.setId(TAG_NUMBER);
           view.setBackgroundColor(Color.TRANSPARENT);
           view.setOnTouchListener( new DirectTouchEventListener() ); 
           
-          mActivity.addContentView(frameLayout, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-          frameLayout.addView(view, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+          ((FrameLayout) mActivity.findViewById(android.R.id.content)).addView(view, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         }
       }
     });
   }
 
-  public void EnableTouchView() {
-    mActivity.findViewById(TAG_NUMBER).setVisibility(View.VISIBLE);
-  }
-
   public void DisableTouchView() {
-    mActivity.findViewById(TAG_NUMBER).setVisibility(View.INVISIBLE);
+    ((FrameLayout) mActivity.findViewById(android.R.id.content)).removeView((View)mActivity.findViewById(TAG_NUMBER));
   }
 
   /********************
@@ -101,6 +98,7 @@ public class DirectTouch
       GetCurrentMotionTouchParams(event);
 
       // Fire Other View's TouchEvent and RootActivity's TouchEvent.
+      /*
       ViewGroup parent = (ViewGroup)view.getParent();
       for(i=0; i<parent.getChildCount(); i++) {
         if(parent.getChildAt(i) == view) {
@@ -109,6 +107,7 @@ public class DirectTouch
           return true;
         }
       }
+      */
 
       if (isDefaultTouch()) {
         mActivity.onTouchEvent(event);
@@ -152,7 +151,7 @@ public class DirectTouch
               posX[0] = event.getHistoricalX(i, h);
               radius[0] = event.getHistoricalSize(i, h);
               pressure[0] = event.getHistoricalPressure(i, h);
-              phase[0] = 2;
+              phase[0] = 4;
             }
             break;
 

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 587253ec70ed64cc2929ece4030791da
-timeCreated: 1452692510
+timeCreated: 1454835725
 licenseType: Free
 PluginImporter:
   serializedVersion: 1
@@ -37,10 +37,6 @@ PluginImporter:
       enabled: 0
       settings:
         CPU: AnyCPU
-    SamsungTV:
-      enabled: 0
-      settings:
-        STV_MODEL: STANDARD_13
     Win:
       enabled: 0
       settings:
